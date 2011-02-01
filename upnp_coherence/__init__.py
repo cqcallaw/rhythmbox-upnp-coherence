@@ -140,7 +140,7 @@ class CoherencePlugin(rb.Plugin, log.Loggable):
                     "version": self.config.get_int(gconf_keys['dmr_version']),
                     "no_thread_needed": True,
                     "shell": self.shell,
-                    'rb_mediaserver': self.server,
+                    'dmr_uuid': gconf_keys['dmr_uuid']
                     }
 
                 if the_icon:
@@ -249,8 +249,8 @@ class CoherencePlugin(rb.Plugin, log.Loggable):
     def detected_media_server(self, client, udn):
         self.warning("found upnp server %s (%s)"  %  (client.device.get_friendly_name(), udn))
 
-        if self.server and client.device.get_id() == str(self.server.uuid):
-            """ don't react on our own MediaServer"""
+        """ don't react on our own MediaServer"""
+        if hasattr(self, 'server') and client.device.get_id() == str(self.server.uuid):
             return
 
         db = self.shell.props.db
