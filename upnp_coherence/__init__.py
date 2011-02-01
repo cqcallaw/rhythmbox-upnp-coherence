@@ -132,7 +132,7 @@ class CoherencePlugin(rb.Plugin, log.Loggable):
             # create our own media renderer
             # but only if we have a matching Coherence package installed
             if self.coherence_version < (0, 5, 2):
-                print "activation faild. Coherence is older than version 0.5.2"
+                print "activation failed. Coherence is older than version 0.5.2"
             else:
                 from coherence.upnp.devices.media_renderer import MediaRenderer
                 from MediaPlayer import RhythmboxPlayer
